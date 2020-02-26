@@ -13,10 +13,11 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         height: '120px',
         backgroundColor: 'white',
-        opacity: 0.9,
+        opacity: '0.8',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        zIndex: 1000
     },
     oneFilterContainer: {
         display: 'flex',
@@ -57,7 +58,7 @@ const SortMenu = (props) => {
     }
 
     return (
-        <Slide direction="down" mountOnEnter unmountOnExit in={props.showSortMenu} elevation={1}>
+        <Slide direction="down" mountOnEnter unmountOnExit in={props.showSortMenu}>
             <Box className={classes.box}>
                 <div className={classes.oneFilterContainer}>
                     <Typography>

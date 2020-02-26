@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
 import Typography from '@material-ui/core/Typography';
 import ApplicationList from './ApplicationList';
+import {applications} from '../public/mock-data';
 
 const ApplicationListView = (props) => {
+
+    const [applicationsArray, setApplicationsArray] = useState([]);
 
     const [showSortMenu, setShowSortMenu] = useState(false);
 
@@ -16,6 +19,9 @@ const ApplicationListView = (props) => {
     const [sortUpdate, setSortUpdate] = useState(0);
     const [sortProgress, setSortProgress] = useState(0);
 
+    useEffect(() => {
+        setApplicationsArray(applications);
+    }, []);
     
     //filter
     const handleScheduledFilter = event => {
@@ -72,13 +78,10 @@ const ApplicationListView = (props) => {
                 sortAge={sortAge}
                 sortUpdate={sortUpdate}
                 sortProgress={sortProgress}/>
-            <ApplicationList />
-            <div 
-                style={{height: '200vh'}}>
-                <Typography variant="h3">
-                    List with applications
-                </Typography>
-            </div>
+            {applicationsArray[0] && 
+                <ApplicationList
+                    applicationsArray={applicationsArray}
+            />}
         </>
     )
 }

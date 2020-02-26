@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import ApplicationListElement from './ApplicationListElement';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -29,34 +30,17 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ApplicationList = () => {
+const ApplicationList = (props) => {
 
     const classes = useStyles();
+
+    const {applicationsArray} = props;
+    console.log(applicationsArray);
 
     return (
         <List component="nav" className={classes.root}>
             <Divider/>
-            <ListItem 
-                button
-                >
-                    <div className={classes.div1}>
-                        <div className={classes.div2}>
-                        </div>
-                        <div className={classes.div2}>
-                            {/* <div className={classes.div3}>
-                            </div>
-                            <div className={classes.div3}>
-                            </div> */}
-                        </div>
-                    </div>
-            </ListItem>
-            <Divider/>
-            <ListItem>hi</ListItem>
-            <ListItem>hi</ListItem>
-            <ListItem>hi</ListItem>
-            <ListItem>hi</ListItem>
-            <ListItem>hi</ListItem>
-
+            {applicationsArray.map((el, index) => <ApplicationListElement key={index}/>)}
         </List>
     )
 }
