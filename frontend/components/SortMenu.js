@@ -29,6 +29,15 @@ const useStyles = makeStyles(theme => ({
     }, 
     icon: {
         height: '13px'
+    },
+    button1: {
+        display: 'column',
+        backgroundColor: 'red'
+    },
+    button2: {
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        backgroundColor: 'green'
     }
   }));
 
@@ -64,9 +73,20 @@ const SortMenu = (props) => {
                             variant={sortUpdateButtonVariant} 
                             className={classes.button}
                             onClick={props.handleUpdateSort}>
-                                <span>due</span>
-                                <ArrowForwardIosIcon className={classes.icon}/>
-                                <span>recent</span>
+                                {
+                                    props.sortUpdate === 0 || props.sortUpdate === 1 ?
+                                    <>
+                                        <span>due</span>
+                                        <ArrowForwardIosIcon className={classes.icon}/>
+                                        <span>recent</span>
+                                    </>
+                                    :
+                                    <>
+                                        <span>recent</span>
+                                        <ArrowForwardIosIcon className={classes.icon}/>
+                                        <span>due</span>
+                                    </>
+                                }
                             </Button>
                     </div>
                 </div>
@@ -78,11 +98,21 @@ const SortMenu = (props) => {
                         <Button
                             size="small" 
                             variant={sortAgeButtonVariant}
-                            className={classes.button}
                             onClick={props.handleAgeSort}>
-                                <span>old</span>
-                                <ArrowForwardIosIcon className={classes.icon}/>
-                                <span>new</span>
+                                {
+                                    props.sortAge === 0 || props.sortAge === 1 ?
+                                    <>
+                                        <span>old</span>
+                                        <ArrowForwardIosIcon className={classes.icon}/>
+                                        <span>new</span>
+                                    </>
+                                    :
+                                    <>
+                                        <span>new</span>
+                                        <ArrowForwardIosIcon className={classes.icon}/>
+                                        <span>old</span>
+                                    </>
+                                }
                             </Button>
                     </div>
                 </div>
@@ -96,9 +126,20 @@ const SortMenu = (props) => {
                         variant={sortProgressButtonVariant}
                         className={classes.button}
                         onClick={props.handleProgressSort}>
-                            <span>progress</span>
-                                <ArrowForwardIosIcon className={classes.icon}/>
-                                <span>no progress</span>
+                            {
+                                props.sortProgress === 0 || props.sortProgress === 1 ?
+                                <>
+                                    <span>progress</span>
+                                    <ArrowForwardIosIcon className={classes.icon}/>
+                                    <span>no progress</span>
+                                </>
+                                :
+                                <>
+                                    <span>no progress</span>
+                                    <ArrowForwardIosIcon className={classes.icon}/>
+                                    <span>progress</span>
+                                </>
+                            }
                         </Button>
                     </div>
                 </div>

@@ -35,12 +35,18 @@ const ApplicationListView = (props) => {
     }
     const handleAgeSort = event => {
         setSortAge((sortAge + 1) % 3);
+        setSortUpdate(0);
+        setSortProgress(0);
     }
     const handleUpdateSort = event => {
         setSortUpdate((sortUpdate + 1) % 3);
+        setSortAge(0);
+        setSortProgress(0);
     }
     const handleProgressSort = event => {
         setSortProgress((sortProgress + 1) % 3);
+        setSortUpdate(0);
+        setSortAge(0);
     }
 
     return (
