@@ -17,6 +17,14 @@ const theme = createMuiTheme({
         },
       },
     },
+    trafficLights: {
+      green1: '#13EBA2',
+      green2: '#11D392',
+      green3: '#0fbc83',
+      green4: '#0DA471',
+      red: '#eb153c',
+      yellow: '#eba213',
+    }
   });
 
   export default theme;

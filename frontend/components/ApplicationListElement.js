@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         height: '100%',
         display: 'flex',
+        color: theme.palette.primary
         // border: '1px solid green'
     },
     div2: {
@@ -40,6 +41,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingBottom: '6px'
     },
     days: {
         alignSelf: 'flex-end',
@@ -52,24 +54,46 @@ const useStyles = makeStyles(theme => ({
         // width: '30px',
         // textAlign: 'right',
         // color: 'black'
+    },
+    icon: {
+        color: props => {
+            const {stage, lastUpdate, status} = props.data;
+            let interactions = stage.length;
+            if (status === 'rejected') return theme.trafficLights.red;
+            if (lastUpdate > 14 && status !== 'scheduled') return theme.trafficLights.yellow; 
+            if (interactions === 1) return theme.palette.grey[500];
+            if (interactions === 2) return theme.trafficLights.green1;
+            if (interactions === 3) return theme.trafficLights.green2;
+            if (interactions === 4) return theme.trafficLights.green3;
+            if (interactions === 5) return theme.trafficLights.green4;
+        }
+    },
+    status: {
+        fontSize: '1rem'
     }
 }));
 
 const ApplicationListElement = (props) => {
 
-    const classes = useStyles();
+    const classes = useStyles(props);
 
     const {company, position, applicationDate, status, scheduledDate, stage, lastUpdate} = props.data;
 
     const getIcon = () => {
+        //color-selectin
         const currentStage = stage[stage.length -1];
-        if (currentStage === 'applied') return <MailIcon/>
-        if (currentStage === 'interview') return <InterviewIcon/>
-        if (currentStage === 'challenge') return <AssignmentIcon/>
-        if (currentStage === 'rejected') return <NotInterestedIcon/>
+        if (currentStage === 'applied') return <MailIcon className={classes.icon} />
+        if (currentStage === 'interview') return <InterviewIcon className={classes.icon}/>
+        if (currentStage === 'challenge') return <AssignmentIcon className={classes.icon}/>
+        if (currentStage === 'rejected') return <NotInterestedIcon className={classes.icon}/>
     }
 
-    console.log(props);
+    const getStatusDisplay = () => {
+        if (status === 'pending') return ('pending: ' + lastUpdate + 'd');
+        if (status === 'rejected') return ('rejected');
+        if (status === 'scheduled') return ('scheduled: ' + scheduledDate);
+    }
+
 
     return (
         <>
@@ -86,9 +110,9 @@ const ApplicationListElement = (props) => {
                     </div>
                     <Divider orientation="vertical" flexItem light/>
                     <div className={classes.div3}>
-                        <Typography className={classes.days}>XXd</Typography>
+    <Typography className={classes.days}>{applicationDate}d</Typography>
                         {getIcon()}
-                        <Typography>Status</Typography>
+                        <Typography className={classes.status}>{getStatusDisplay()}</Typography>
                     </div>
                 </div>
             </ListItem>
