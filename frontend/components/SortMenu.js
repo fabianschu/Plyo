@@ -25,19 +25,15 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
     buttonContainer: {
-        width: '55%'
+        width: '62%'
     }, 
     icon: {
         height: '13px'
     },
-    button1: {
-        display: 'column',
-        backgroundColor: 'red'
-    },
-    button2: {
+    button: {
+        width: '120px',
         display: 'flex',
-        flexDirection: 'row-reverse',
-        backgroundColor: 'green'
+        justifyContent: 'space-between'
     }
   }));
 
@@ -65,7 +61,7 @@ const SortMenu = (props) => {
             <Box className={classes.box}>
                 <div className={classes.oneFilterContainer}>
                     <Typography>
-                        Last status change:
+                        Last update:
                     </Typography>
                     <div className={classes.buttonContainer}>
                         <Button
@@ -98,6 +94,7 @@ const SortMenu = (props) => {
                         <Button
                             size="small" 
                             variant={sortAgeButtonVariant}
+                            className={classes.button}
                             onClick={props.handleAgeSort}>
                                 {
                                     props.sortAge === 0 || props.sortAge === 1 ?
@@ -129,15 +126,15 @@ const SortMenu = (props) => {
                             {
                                 props.sortProgress === 0 || props.sortProgress === 1 ?
                                 <>
-                                    <span>progress</span>
+                                    <span>high</span>
                                     <ArrowForwardIosIcon className={classes.icon}/>
-                                    <span>no progress</span>
+                                    <span>low</span>
                                 </>
                                 :
                                 <>
-                                    <span>no progress</span>
+                                    <span>low</span>
                                     <ArrowForwardIosIcon className={classes.icon}/>
-                                    <span>progress</span>
+                                    <span>high</span>
                                 </>
                             }
                         </Button>

@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
         '-webkit-overflow-scrolling': 'touch'
     },
     chip: {
-        width: '90px',
+        width: '80px',
         margin: '1px'
     }
 }));

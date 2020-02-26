@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import FilterSortButton from './FilterSortButton';
+import ApplicationList from './ApplicationList';
 
 const ApplicationListView = (props) => {
 
@@ -73,6 +72,7 @@ const ApplicationListView = (props) => {
                 sortAge={sortAge}
                 sortUpdate={sortUpdate}
                 sortProgress={sortProgress}/>
+            <ApplicationList />
             <div 
                 style={{height: '200vh'}}>
                 <Typography variant="h3">
