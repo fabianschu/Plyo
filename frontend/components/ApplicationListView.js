@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import FilterSortBar from './FilterSortBar';
-import FilterSortContainer from './FilterSortContainer';
+import SortMenu from './SortMenu';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import FilterSortButton from './FilterSortButton';
@@ -13,8 +13,12 @@ const ApplicationListView = (props) => {
     const [showPending, setShowPending] = useState(true);
     const [showRejected, setShowRejected] = useState(false);
 
+    const [sortAge, setSortAge] = useState(0);
+    const [sortUpdate, setSortUpdate] = useState(0);
+    const [sortProgress, setSortProgress] = useState(0);
+
     
-    
+    //filter
     const handleScheduledFilter = event => {
         setShowScheduled(!showScheduled);
     }
@@ -24,27 +28,45 @@ const ApplicationListView = (props) => {
     const handlePendingFilter = event => {
         setShowPending(!showPending);
     }
+
+    //sorting
     const handleSortMenu = event => {
         setShowSortMenu(!showSortMenu);
+    }
+    const handleAgeSort = event => {
+        setSortAge((sortAge + 1) % 3);
+    }
+    const handleUpdateSort = event => {
+        setSortUpdate((sortUpdate + 1) % 3);
+    }
+    const handleProgressSort = event => {
+        setSortProgress((sortProgress + 1) % 3);
     }
 
     return (
         <>
             <FilterSortBar 
                 showSortMenu={showSortMenu}
-                setShowSortMenu={setShowSortMenu}
+                handleSortMenu={handleSortMenu}
                 handleScheduledFilter={handleScheduledFilter}
                 handlePendingFilter={handlePendingFilter}
                 handleRejectedFilter={handleRejectedFilter}
                 showScheduled={showScheduled}
                 showPending={showPending}
-                showRejected={showRejected}/>
+                showRejected={showRejected}
+                />
             {/* <FilterSortButton 
                 checked={checked}
                 setChecked={setChecked}
                 /> */}
-            <FilterSortContainer 
-            showSortMenu={showSortMenu}/>
+            <SortMenu 
+                showSortMenu={showSortMenu}
+                handleAgeSort={handleAgeSort}
+                handleUpdateSort={handleUpdateSort}
+                handleProgressSort={handleProgressSort}
+                sortAge={sortAge}
+                sortUpdate={sortUpdate}
+                sortProgress={sortProgress}/>
             <div 
                 style={{height: '200vh'}}>
                 <Typography variant="h3">

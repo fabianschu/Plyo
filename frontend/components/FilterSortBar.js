@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 const FilterSortBar = (props) => {
     const classes = useStyles();
-    
+
     let scheduledChipVariant = "default"
     if(!props.showScheduled) {
         scheduledChipVariant = "outlined"
