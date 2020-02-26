@@ -7,12 +7,15 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
     box: {
-      position: 'fixed',
-      top: 88,
-      width: '100%',
-      height: '100px',
-      backgroundColor: 'white',
-      opacity: 0.9
+        position: 'fixed',
+        top: 88,
+        width: '100%',
+        height: '120px',
+        backgroundColor: 'white',
+        opacity: 0.9,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around'
     },
     oneFilterContainer: {
         display: 'flex',
@@ -21,8 +24,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
     buttonContainer: {
-
-        width: '50%'
+        width: '55%'
     }
   }));
 
@@ -30,8 +32,8 @@ const FilterSortContainer = (props) => {
 
     const classes = useStyles();
     return (
-        <Slide direction="down" mountOnEnter unmountOnExit in={props.checked} elevation={0}>
-            <Box elevation={0} className={classes.box}>
+        <Slide direction="down" mountOnEnter unmountOnExit in={props.checked} elevation={1}>
+            <Box className={classes.box}>
                 <div className={classes.oneFilterContainer}>
                     <Typography>
                         Last status change:

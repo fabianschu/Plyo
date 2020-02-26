@@ -49,38 +49,50 @@ const useStyles = makeStyles(theme => ({
 
 const FilterSortBar = (props) => {
     const classes = useStyles();
-
-    const handleClick = event => {
-        console.log(`click: changing checked to ${!props.checked}`)
-        props.setChecked(!props.checked)
+    
+    let scheduledChipVariant = "default"
+    if(!props.showScheduled) {
+        scheduledChipVariant = "outlined"
     }
+
+    let pendingChipVariant = "default"
+    if(!props.showPending) {
+        pendingChipVariant = "outlined"
+    }
+
+    let rejectedChipVariant = "default"
+    if(!props.showRejected) {
+        rejectedChipVariant = "outlined"
+    }
+
     return (
         <AppBar className={classes.root} elevation={0}>
             <div className={classes.buttonContainer}>
                 <Button
-                    onClick={handleClick}
+                    onClick={props.handleSortMenu}
                     size="small" 
                     variant="outlined" 
-                    className={classes.button}>Sort</Button>
+                    className={classes.button}
+                    >Sort</Button>
                 <div className={classes.filterContainer}>
                     <Chip
-                        variant="outlined"
+                        variant={scheduledChipVariant}
                         size="small"
-                        label="scheduled"
-                        onClick={handleClick}
+                        label="scheduled" 
+                        onClick={props.handleScheduledFilter}
                         className={classes.chip}
                     />    
                     <Chip 
-                        onClick={handleClick}
+                        onClick={props.handlePendingFilter}
                         size="small" 
-                        variant="outlined"
+                        variant={pendingChipVariant}
                         label="pending"
                         className={classes.chip}
                         ></Chip>
                     <Chip 
-                        onClick={handleClick}
+                        onClick={props.handleRejectedFilter}
                         size="small" 
-                        variant="outlined"
+                        variant={rejectedChipVariant}
                         label="rejected"
                         className={classes.chip} 
                         ></Chip> 
