@@ -81,6 +81,12 @@ const ApplicationListView = (props) => {
             {applicationsArray[0] && 
                 <ApplicationList
                     applicationsArray={applicationsArray}
+                    showRejected={showRejected}
+                    showPending={showPending}
+                    showScheduled={showScheduled}
+                    sortAge={sortAge}
+                    sortUpdate={sortUpdate}
+                    sortProgress={sortProgress}
             />}
         </>
     )
