@@ -59,6 +59,18 @@ const ApplicationListElement = (props) => {
 
     const classes = useStyles();
 
+    const {company, position, applicationDate, status, scheduledDate, stage, lastUpdate} = props.data;
+
+    const getIcon = () => {
+        const currentStage = stage[stage.length -1];
+        if (currentStage === 'applied') return <MailIcon/>
+        if (currentStage === 'interview') return <InterviewIcon/>
+        if (currentStage === 'challenge') return <AssignmentIcon/>
+        if (currentStage === 'rejected') return <NotInterestedIcon/>
+    }
+
+    console.log(props);
+
     return (
         <>
             <ListItem className={classes.root}
@@ -66,16 +78,16 @@ const ApplicationListElement = (props) => {
                 <div className={classes.div1}>  
                     <div className={classes.div2}>
                         <Typography variant="h6" component="h1">
-                            Company
+                            {company}
                         </Typography>
                         <Typography variant="body1" component="h2">
-                            Title
+                            {position}
                         </Typography>
                     </div>
                     <Divider orientation="vertical" flexItem light/>
                     <div className={classes.div3}>
                         <Typography className={classes.days}>XXd</Typography>
-                        <InterviewIcon/>
+                        {getIcon()}
                         <Typography>Status</Typography>
                     </div>
                 </div>

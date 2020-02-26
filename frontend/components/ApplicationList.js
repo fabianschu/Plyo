@@ -40,7 +40,9 @@ const ApplicationList = (props) => {
     return (
         <List component="nav" className={classes.root}>
             <Divider/>
-            {applicationsArray.map((el, index) => <ApplicationListElement key={index}/>)}
+            {applicationsArray.map((el, index) => <ApplicationListElement 
+                data={el}
+                key={index}/>)}
         </List>
     )
 }
