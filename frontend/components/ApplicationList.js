@@ -49,8 +49,6 @@ const ApplicationList = (props) => {
         resultArray = resultArray.filter
         (application => application.status !== 'scheduled')
     }
-    console.log(props);
-    
 
     
     if (sortUpdate !== 0) {
@@ -99,8 +97,6 @@ const ApplicationList = (props) => {
             
         })
     }
-
-    console.log(resultArray)
 
     return (
         <List component="nav" className={classes.root}>

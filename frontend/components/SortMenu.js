@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
+import Slide from '@material-ui/core/Slide';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         height: '120px',
         backgroundColor: 'white',
-        opacity: '0.8',
+        opacity: '0.95',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
@@ -58,7 +58,13 @@ const SortMenu = (props) => {
     }
 
     return (
-        <Slide direction="down" mountOnEnter unmountOnExit in={props.showSortMenu}>
+        <Slide 
+            direction="down" 
+            mountOnEnter 
+            unmountOnExit 
+            in={props.showSortMenu}
+            >
+
             <Box className={classes.box}>
                 <div className={classes.oneFilterContainer}>
                     <Typography>

@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab'
-import FilterListSharpIcon from '@material-ui/icons/FilterListSharp';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,19 +28,21 @@ const useStyles = makeStyles(theme => ({
     // }
 }));
 
-const FilterSortButton = (props) => {
+const AddPlyoButton = (props) => {
     
-    const handleClick = event => {
-        console.log(`click: changing checked to ${!props.checked}`)
-        props.setChecked(!props.checked)
-    }
 
     const classes = useStyles();
     return (
-        <Fab color="secondary" aria-label="add an alarm" className={classes.root} disableRipple={false} onClick={handleClick} disableFocusRipple={false}>
-            <FilterListSharpIcon className={classes.icon} />
+        <Fab 
+            color="secondary" 
+            aria-label="add an alarm" 
+            className={classes.root} 
+            disableRipple={false}
+            onClick={props.handleAddMenu} 
+            disableFocusRipple={false}>
+            <AddIcon className={classes.icon} />
         </Fab >
     )
 }
 
-export default FilterSortButton
+export default AddPlyoButton

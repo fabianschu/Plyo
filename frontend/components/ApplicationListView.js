@@ -1,29 +1,40 @@
 import React, {useState, useEffect} from 'react';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
+import AddMenu from './AddMenu';
 import Typography from '@material-ui/core/Typography';
+import FilterSortButton from './AddPlyoButton';
 import ApplicationList from './ApplicationList';
 import {applications} from '../public/mock-data';
+import AddPlyoButton from './AddPlyoButton';
 
 const ApplicationListView = (props) => {
 
     const [applicationsArray, setApplicationsArray] = useState([]);
 
+    //display UI elements states
     const [showSortMenu, setShowSortMenu] = useState(false);
+    const [showAddMenu, setShowAddMenu] = useState(false);
 
+
+    //filter states
     const [showScheduled, setShowScheduled] = useState(true);
     const [showPending, setShowPending] = useState(true);
     const [showRejected, setShowRejected] = useState(false);
 
+    //sorting states
     const [sortAge, setSortAge] = useState(0);
     const [sortUpdate, setSortUpdate] = useState(0);
     const [sortProgress, setSortProgress] = useState(0);
+
 
     useEffect(() => {
         setApplicationsArray(applications);
     }, []);
     
-    //filter
+
+
+    //filter handler
     const handleScheduledFilter = event => {
         setShowScheduled(!showScheduled);
     }
@@ -34,7 +45,8 @@ const ApplicationListView = (props) => {
         setShowPending(!showPending);
     }
 
-    //sorting
+
+    //sorting handler
     const handleSortMenu = event => {
         setShowSortMenu(!showSortMenu);
     }
@@ -54,6 +66,13 @@ const ApplicationListView = (props) => {
         setSortAge(0);
     }
 
+
+const handleAddMenu = event => {
+    setShowAddMenu(!showAddMenu);
+}
+
+    console.log(showSortMenu)
+
     return (
         <>
             <FilterSortBar 
@@ -66,10 +85,10 @@ const ApplicationListView = (props) => {
                 showPending={showPending}
                 showRejected={showRejected}
                 />
-            {/* <FilterSortButton 
-                checked={checked}
-                setChecked={setChecked}
-                /> */}
+            <AddPlyoButton 
+                // showAddMenu={showAddMenu}
+                handleAddMenu={handleAddMenu}
+                />
             <SortMenu 
                 showSortMenu={showSortMenu}
                 handleAgeSort={handleAgeSort}
@@ -88,6 +107,10 @@ const ApplicationListView = (props) => {
                     sortUpdate={sortUpdate}
                     sortProgress={sortProgress}
             />}
+            <AddMenu 
+                showAddMenu={showAddMenu}
+                setShowAddMenu={setShowAddMenu}
+                handleAddMenu={handleAddMenu}/>
         </>
     )
 }
