@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
-import AddMenu from './AddMenu';
-import Typography from '@material-ui/core/Typography';
-import FilterSortButton from './AddPlyoButton';
+import EditPlyo from './EditPlyo';
 import ApplicationList from './ApplicationList';
-import {applications} from '../public/mock-data';
 import AddPlyoButton from './AddPlyoButton';
+import {applications} from '../public/mock-data';
 
 const ApplicationListView = (props) => {
 
@@ -31,8 +29,6 @@ const ApplicationListView = (props) => {
     useEffect(() => {
         setApplicationsArray(applications);
     }, []);
-    
-
 
     //filter handler
     const handleScheduledFilter = event => {
@@ -67,11 +63,10 @@ const ApplicationListView = (props) => {
     }
 
 
-const handleAddMenu = event => {
-    setShowAddMenu(!showAddMenu);
-}
+    const handleAddMenu = event => {
+        setShowAddMenu(!showAddMenu);
+    }
 
-    console.log(showSortMenu)
 
     return (
         <>
@@ -107,12 +102,13 @@ const handleAddMenu = event => {
                     sortUpdate={sortUpdate}
                     sortProgress={sortProgress}
             />}
-            <AddMenu 
+            <EditPlyo 
                 showAddMenu={showAddMenu}
                 setShowAddMenu={setShowAddMenu}
                 handleAddMenu={handleAddMenu}/>
         </>
     )
 }
+
 
 export default ApplicationListView

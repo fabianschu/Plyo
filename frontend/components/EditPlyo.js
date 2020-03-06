@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         backgroundColor: 'white',
         opacity: '0.95',
-        zIndex: 1000
+        zIndex: 2000
     },
     inclButton: {
         display: 'flex',
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AddMenu = (props) => {
+const EditPlyo = (props) => {
     const classes = useStyles();
     const [company, setCompany] = React.useState('');
     const [position, setPosition] = React.useState('');
@@ -188,4 +188,4 @@ const AddMenu = (props) => {
     )
 }
 
-export default AddMenu
+export default EditPlyo;

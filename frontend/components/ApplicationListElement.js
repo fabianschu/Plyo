@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
@@ -77,7 +78,7 @@ const ApplicationListElement = (props) => {
 
     const classes = useStyles(props);
 
-    const {company, position, applicationDate, status, scheduledDate, stage, lastUpdate} = props.data;
+    const {company, position, applicationDate, status, scheduledDate, stage, lastUpdate, id} = props.data;
 
     const getIcon = () => {
         //color-selectin
@@ -94,28 +95,32 @@ const ApplicationListElement = (props) => {
         if (status === 'scheduled') return ('scheduled: ' + scheduledDate);
     }
 
+    //console.log(props)
 
     return (
         <>
-            <ListItem className={classes.root}
-            button>
-                <div className={classes.div1}>  
-                    <div className={classes.div2}>
-                        <Typography variant="h6" component="h1">
-                            {company}
-                        </Typography>
-                        <Typography variant="body1" component="h2">
-                            {position}
-                        </Typography>
-                    </div>
-                    <Divider orientation="vertical" flexItem light/>
-                    <div className={classes.div3}>
-    <Typography className={classes.days}>{applicationDate}d</Typography>
-                        {getIcon()}
-                        <Typography className={classes.status}>{getStatusDisplay()}</Typography>
-                    </div>
-                </div>
-            </ListItem>
+            <Link 
+                href={`/plyodetails?id=${id}`}>
+                    <ListItem component="a" className={classes.root}
+                    button>
+                        <div className={classes.div1}>  
+                            <div className={classes.div2}>
+                                <Typography variant="h6" component="h1">
+                                    {company}
+                                </Typography>
+                                <Typography variant="body1" component="h2">
+                                    {position}
+                                </Typography>
+                            </div>
+                            <Divider orientation="vertical" flexItem light/>
+                            <div className={classes.div3}>
+                                <Typography className={classes.days}>{applicationDate}d</Typography>
+                                {getIcon()}
+                                <Typography className={classes.status}>{getStatusDisplay()}</Typography>
+                            </div>
+                        </div>
+                    </ListItem>
+            </ Link>
             <Divider/>
         </>
     )

@@ -2,7 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip'
+import Chip from '@material-ui/core/Chip';
+import { shadows } from '@material-ui/system';
+
 
 
 
@@ -12,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         top: 48, 
         height: 40,
         backgroundColor: theme.palette.grey[300],
-        zIndex: 900
+        zIndex: 1500
     },
     buttonContainer: {
         height: '100%',
@@ -67,7 +69,7 @@ const FilterSortBar = (props) => {
     }
 
     return (
-        <AppBar className={classes.root} elevation={0}>
+        <AppBar className={classes.root} elevation={3}>
             <div className={classes.buttonContainer}>
                 <Button
                     onClick={props.handleSortMenu}
