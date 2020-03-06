@@ -15,7 +15,8 @@ const applications = [
         stage: ['applied'],
         applicationDate: 8,
         scheduledDate: null,
-        lastUpdate: 6,link: 'https://berlinstartupjobs.com/de/engineering/full-stack-developer-m-industrie-deutschland-gmbh/',
+        lastUpdate: 6,
+        link: 'https://berlinstartupjobs.com/de/engineering/full-stack-developer-m-industrie-deutschland-gmbh/',
         contactPerson: 'Steve Jobs'
     },
     {

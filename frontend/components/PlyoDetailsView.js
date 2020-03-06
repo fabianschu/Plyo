@@ -30,8 +30,9 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         display: 'flex',
         justifyContent: 'space-between',
-        margin: '0.5rem 0',
-        padding: '0 1rem'
+        alignItems: 'center',
+        padding: '0.5rem 1rem',
+        borderBottom: '0.2px solid lightgrey'
     }, 
     dataWrapper: {
         width: '55%',
@@ -51,32 +52,37 @@ const DetailsElement = (props) => {
     
     const DataDisplay = (props) => {
 
-        if(props.type !== 'Position') {
+        console.log(props);
+
+        if(props.type === 'Position' && props.link) {
             return (
-                <Box 
-                    className={classes.dataWrapper}>
-                    <Typography 
-                        variant='h6' 
-                        component="body1" 
-                        className={classes.data}>
-                        {props.data}
-                    </Typography>
-                </Box>
+                <>
+                    <Box 
+                        className={classes.dataWrapper}>
+                            <a 
+                                href={props.link}
+                                target="_blank" rel="noopener noreferrer" >
+                                <Typography
+                                    component="a"
+                                    variant="h6"
+                                    className={classes.data}>
+                                    {props.data}
+                                </Typography>
+                            </a>
+                    </Box>
+                </>
             )
         }
         return (
-            <>
-                <Box 
-                    className={classes.dataWrapper}>
-                        <Typography 
-                            variant='h6' 
-                            component="body1" 
-                            className={classes.data}>
-                            {props.data}
-                        </Typography>
-                </Box>
-                <Divider/>
-            </>
+            <Box 
+                className={classes.dataWrapper}>
+                <Typography 
+                    variant='h6' 
+                    component="span" 
+                    className={classes.data}>
+                    {props.data}
+                </Typography>
+            </Box>
         )
     }
 
@@ -84,14 +90,14 @@ const DetailsElement = (props) => {
     <>
         <Box className={classes.detailsWrapper}>
             <Typography 
+            color='primary'
             variant='h6' 
-            component="body1"
+            component="span"
             className={classes.description}>
                 {props.type}:
             </Typography>
             <DataDisplay {...props}/>
         </Box>
-        <Divider/>
     </>
     )
 }
@@ -135,16 +141,19 @@ const PlyoDetailsView = (props) => {
                     data={plyoDetails.city}/>
                 <DetailsElement 
                     type="Position" 
-                    data={plyoDetails.position}/>
+                    data={plyoDetails.position}
+                    link={plyoDetails.link}/>
                 <DetailsElement 
                     type="Contact Person" 
                     data={plyoDetails.contactPerson}/>
                 <DetailsElement 
                     type="Channel" 
                     data={plyoDetails.channel}/>
+                {plyoDetails.email &&
                 <DetailsElement 
                     type="E-mail" 
                     data={plyoDetails.email}/>
+                }   
             </Box>
             <Divider />
         </Box>
