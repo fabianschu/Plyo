@@ -50,6 +50,9 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         marginBottom: '20px'
     },
+    paper2: {
+        padding: "1rem"
+    }
 }))
 
 
@@ -162,20 +165,22 @@ const PlyoDetailsView = (props) => {
             </Paper>
             <Box 
             className={classes.plyoSpecsContainer}>
-                <Box className={classes.plyoSpecs}>
-                    <Button
-                    color="secondary"
-                    variant="outlined"
-                    fullWidth
-                    className={classes.button}>Add Event</Button>
-                    {
-                        plyoDetails.stage2.reverse().map((stage, index) => 
-                        <PlyoDetailsEvent 
-                        plyoDetails={plyoDetails} 
-                        currentIndex={index}
-                        key={index}/>)
-                    }
-                </Box>
+                <Paper className={classes.paper2} elevation={2}>
+                    <Box className={classes.plyoSpecs}>
+                        <Button
+                        color="secondary"
+                        variant="contained"
+                        fullWidth
+                        className={classes.button}>Add Event</Button>
+                        {
+                            plyoDetails.stage2.reverse().map((stage, index) => 
+                            <PlyoDetailsEvent 
+                            plyoDetails={plyoDetails} 
+                            currentIndex={index}
+                            key={index}/>)
+                        }
+                    </Box>
+                </Paper>
             </Box>
         </Box>
         }
