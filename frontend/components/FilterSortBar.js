@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         top: 48, 
         height: 40,
         backgroundColor: theme.palette.grey[300],
-        zIndex: 1500
+        zIndex: 1100
     },
     buttonContainer: {
         height: '100%',

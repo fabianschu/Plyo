@@ -11,6 +11,7 @@ import RejectedIcon from '@material-ui/icons/NotInterested';
 const useStyles = makeStyles(theme => ({
     paper: {
         display: 'flex',
+        alignItems: 'center',
         padding: '20px 0',
         borderColor: theme.palette.secondary.main
     },
@@ -74,9 +75,14 @@ const PlyoDetailsEvent = (props) => {
 
         const EventInformation = props => {
             return (
-            <Typography>
-                {props.text}
-            </Typography>
+                <>
+                    <Typography variant="body1" component="h1">
+                        {props.text1}
+                    </Typography>
+                    <Typography>
+                        {props.text2}
+                    </Typography>
+                </>
             )
         }
 
@@ -84,8 +90,9 @@ const PlyoDetailsEvent = (props) => {
         let statusType = "done";
 
         if(currentStage.event === "rejected") {
-            let text = "Rejection: " + currentStage.date;
-            return <EventInformation text={text} />
+            let text1 = "Rejection: ";
+            let text2 = currentStage.date;
+            return <EventInformation text1={text1} text2={text2}/>
         }
 
         if (currentStage.event === "applied") eventType = "Application";
@@ -94,14 +101,10 @@ const PlyoDetailsEvent = (props) => {
         
         if (currentIndex === 0) statusType = "scheduled"
 
-        let text = eventType + ' ' + statusType + ': ' + currentStage.date;
+        let text1 = eventType + ' ' + statusType + ': '
+        let text2 = currentStage.date;
 
-
-        return (
-            <Typography>
-                {text}
-            </Typography>
-        )
+        return <EventInformation text1={text1} text2={text2}/>
     }
 
     console.log(currentStage.event)
@@ -130,28 +133,3 @@ const PlyoDetailsEvent = (props) => {
 }
 
 export default PlyoDetailsEvent;
-
-                // <Box className={classes.specsWrapper}>
-                //     <Typography className={classes.specsType}>Application Date: 
-                //     </Typography>
-                //     <Box className={classes.statusWrapper}>
-                //         <Typography>{plyoDetails.applicationDate}
-                //         </Typography>
-                //     </Box>
-                // </Box>
-                // <Box className={classes.specsWrapper}>
-                //     <Typography className={classes.specsType}>Last Update: 
-                //     </Typography>
-                //     <Box className={classes.statusWrapper}>
-                //         <Typography>{plyoDetails.lastUpdate}
-                //         </Typography>
-                //     </Box>
-                // </Box>
-                // <Box className={classes.specsWrapper}>
-                //     <Typography className={classes.specsType}>Status: 
-                //     </Typography>
-                //     <Box className={classes.statusWrapper}>
-                //         <Typography>{plyoDetails.lastUpdate}
-                //         </Typography>
-                //     </Box>
-                // </Box>

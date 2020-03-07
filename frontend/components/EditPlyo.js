@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         backgroundColor: 'white',
         opacity: '0.95',
-        zIndex: 2000
+        zIndex: 1200
     },
     inclButton: {
         display: 'flex',
@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 const EditPlyo = (props) => {
     const classes = useStyles();
+    
     const [company, setCompany] = React.useState('');
     const [position, setPosition] = React.useState('');
     const [contact, setContact] = React.useState('');
@@ -183,7 +184,6 @@ const EditPlyo = (props) => {
                     </Button>
                 </Box>
             </Box>
-
         </Slide>
     )
 }

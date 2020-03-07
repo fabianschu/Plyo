@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {applications} from '../public/mock-data';
 import PlyoDetailsEvent from '../components/PlyoDetailsEvent';
+import SlideUp from '../components/SlideUp';
+import EditCompanyMenu from '../components/EditCompanyMenu';
 import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
@@ -73,7 +74,6 @@ const DetailsElement = (props) => {
                                 href={props.link}
                                 target="_blank" rel="noopener noreferrer" >
                                 <Typography
-                                    component="a"
                                     variant="h6"
                                     className={classes.data}>
                                     {props.data}
@@ -117,6 +117,9 @@ const PlyoDetailsView = (props) => {
 
     const [plyoDetails, setPlyoDetails] = useState();
 
+    const [showEditCompanyMenu, setShowEditCompanyMenu] = useState(false);
+    const [showAddEventMenu, setShowAddEventMenu] = useState(false);
+
     const classes = useStyles();
     
     let {id} = props;
@@ -124,8 +127,7 @@ const PlyoDetailsView = (props) => {
 
     useEffect(() => {
         setPlyoDetails(applications.find(plyo => plyo.id === id));
-    })
-
+    });
 
     return (
         <>
@@ -158,7 +160,9 @@ const PlyoDetailsView = (props) => {
                 <Box className={classes.top}>
                     <IconButton 
                     aria-label="edit"
-                    color="secondary">
+                    color="secondary"
+                    onClick={() => setShowEditCompanyMenu(!showEditCompanyMenu)}
+                    >
                         <EditIcon />
                     </IconButton>
                 </Box>
@@ -184,6 +188,9 @@ const PlyoDetailsView = (props) => {
             </Box>
         </Box>
         }
+        <SlideUp in={showEditCompanyMenu} out={setShowEditCompanyMenu}>
+            <EditCompanyMenu plyoDetails={plyoDetails}/>
+        </SlideUp>
         </>
     )
 }
