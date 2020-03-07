@@ -67,7 +67,7 @@ const applications = [
         position: 'Junior Frontend Developer',
         status: 'scheduled',
         stage: ['applied', 'interview', 'challenge', 'interview'],
-        stage2: [{ event: 'applied', date: '20-01-2019' }, { event: 'interview', date: '04-02-2019' }, { event: 'rejected', date: '27-01-2019' }],
+        stage2: [{ event: 'applied', date: '20-01-2019' }, { event: 'interview', date: '04-02-2019' }, { event: 'interview', date: '04-02-2019' }],
         applicationDate: 35,
         scheduledDate: '13-02-2020 17:00',
         lastUpdate: 26,

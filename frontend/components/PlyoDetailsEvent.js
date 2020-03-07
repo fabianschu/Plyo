@@ -72,15 +72,29 @@ const PlyoDetailsEvent = (props) => {
 
     const getEventInformation = () => {
 
-        let text = "";
-
-        if (currentIndex === stage2.length - 1) {
-            text = "This is the first"
-        } else if (currentIndex === 0) {
-            text = "This is the most recent"
-        } else {
-            text = "This is in between"
+        const EventInformation = props => {
+            return (
+            <Typography>
+                {props.text}
+            </Typography>
+            )
         }
+
+        let eventType = "";
+        let statusType = "done";
+
+        if(currentStage.event === "rejected") {
+            let text = "Rejection: " + currentStage.date;
+            return <EventInformation text={text} />
+        }
+
+        if (currentStage.event === "applied") eventType = "Application";
+        if (currentStage.event === "interview") eventType = "Interview";
+        if (currentStage.event === "challenge") eventType = "Challenge";
+        
+        if (currentIndex === 0) statusType = "scheduled"
+
+        let text = eventType + ' ' + statusType + ': ' + currentStage.date;
 
 
         return (
