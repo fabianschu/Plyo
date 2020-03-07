@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import InterviewIcon from '@material-ui/icons/QuestionAnswer';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import MailIcon from '@material-ui/icons/Mail';
-import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import RejectedIcon from '@material-ui/icons/NotInterested';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,12 +19,10 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
         display: 'flex',
         color: theme.palette.primary
-        // border: '1px solid green'
     },
     div2: {
         width: '65%',
         height: '100%',
-        // border: '1px solid blue',
         paddingLeft: '4px',
         paddingRight: '10px',
         height: '100%',
@@ -35,7 +33,6 @@ const useStyles = makeStyles(theme => ({
     div3: {
         width: '35%',
         height: '100%',
-        // border: '1px solid red',
 
         position: 'relative',
         display: 'flex',
@@ -86,7 +83,7 @@ const ApplicationListElement = (props) => {
         if (currentStage === 'applied') return <MailIcon className={classes.icon} />
         if (currentStage === 'interview') return <InterviewIcon className={classes.icon}/>
         if (currentStage === 'challenge') return <AssignmentIcon className={classes.icon}/>
-        if (currentStage === 'rejected') return <NotInterestedIcon className={classes.icon}/>
+        if (currentStage === 'rejected') return <RejectedIcon className={classes.icon}/>
     }
 
     const getStatusDisplay = () => {

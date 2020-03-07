@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 const Navbar = () => {
     const classes = useStyles();
     return (
-    <AppBar position="fixed" className={classes.bar} elevation={0}>
+    <AppBar position="fixed" className={classes.bar} elevation={4}>
         <Toolbar variant="dense">
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />

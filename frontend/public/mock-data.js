@@ -58,6 +58,8 @@ const applications = [
         link: 'https://berlinstartupjobs.com/de/engineering/full-stack-developer-m-industrie-deutschland-gmbh/',
         contactPerson: 'Steve Jobs'
     },
+
+
     {
         id: 5,
         city: 'Berlin',
@@ -65,12 +67,15 @@ const applications = [
         position: 'Junior Frontend Developer',
         status: 'scheduled',
         stage: ['applied', 'interview', 'challenge', 'interview'],
+        stage2: [{ event: 'applied', date: '20-01-2019' }, { event: 'interview', date: '04-02-2019' }, { event: 'rejected', date: '27-01-2019' }],
         applicationDate: 35,
         scheduledDate: '13-02-2020 17:00',
         lastUpdate: 26,
         link: 'https://berlinstartupjobs.com/de/engineering/full-stack-developer-m-industrie-deutschland-gmbh/',
         contactPerson: 'Steve Jobs'
     },
+
+
     {
         id: 6,
         city: 'Berlin',
@@ -139,3 +144,5 @@ const applications = [
 ]
 
 export {applications, statusIcons};
+
+//,{ event: 'interview', date: '27-01-2019' }, { event: 'interview', date: '04-02-2019' }

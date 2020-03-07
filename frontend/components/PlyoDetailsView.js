@@ -1,30 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {applications} from '../public/mock-data';
-import Link from 'next/link';
+import PlyoDetailsEvent from '../components/PlyoDetailsEvent';
 import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
     container: {
-
+        padding: '1rem',
+        backgroundColor: `${theme.palette.grey[100]}`
     },
     top: {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingLeft: '1rem'
-    },
-    applicationDate: {
-        display: 'inline-flex',
-        padding: '2px'
+        paddingLeft: '1rem',
     },
     details: {
-        // padding: '0.5rem 1rem'
+        // backgroundColor: `${theme.palette.grey[100]}`
     },
     detailsWrapper: {
         width: '100%',
@@ -42,7 +40,16 @@ const useStyles = makeStyles(theme => ({
     },
     description: {
         width: '45%'
-    }
+    },
+    plyoSpecsContainer: {
+        margin: '20px 0'
+    },
+    plyoSpecs: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        marginBottom: '20px'
+    },
 }))
 
 
@@ -116,46 +123,60 @@ const PlyoDetailsView = (props) => {
         setPlyoDetails(applications.find(plyo => plyo.id === id));
     })
 
-    console.log(plyoDetails)
 
     return (
         <>
         {plyoDetails &&
         <Box className={classes.container}>
-            <Box className={classes.top}>
-                <Paper 
+            <Paper className={classes.paper} elevation={2}>
+                <Box className={classes.details}>
+                    <DetailsElement 
+                        type="Company" 
+                        data={plyoDetails.company}/>
+                    <DetailsElement 
+                        type="City" 
+                        data={plyoDetails.city}/>
+                    <DetailsElement 
+                        type="Position" 
+                        data={plyoDetails.position}
+                        link={plyoDetails.link}/>
+                    <DetailsElement 
+                        type="Contact Person" 
+                        data={plyoDetails.contactPerson}/>
+                    <DetailsElement 
+                        type="Channel" 
+                        data={plyoDetails.channel}/>
+                    {plyoDetails.email &&
+                    <DetailsElement 
+                        type="E-mail" 
+                        data={plyoDetails.email}/>
+                    }   
+                </Box>
+                <Box className={classes.top}>
+                    <IconButton 
+                    aria-label="edit"
+                    color="secondary">
+                        <EditIcon />
+                    </IconButton>
+                </Box>
+            </Paper>
+            <Box 
+            className={classes.plyoSpecsContainer}>
+                <Box className={classes.plyoSpecs}>
+                    <Button
+                    color="secondary"
                     variant="outlined"
-                    className={classes.applicationDate}>Applied: {plyoDetails.applicationDate}</Paper>
-                <IconButton 
-                aria-label="edit"
-                color="secondary">
-                    <EditIcon />
-                </IconButton>
+                    fullWidth
+                    className={classes.button}>Add Event</Button>
+                    {
+                        plyoDetails.stage2.reverse().map((stage, index) => 
+                        <PlyoDetailsEvent 
+                        plyoDetails={plyoDetails} 
+                        currentIndex={index}
+                        key={index}/>)
+                    }
+                </Box>
             </Box>
-            <Box className={classes.details}>
-                <DetailsElement 
-                    type="Company" 
-                    data={plyoDetails.company}/>
-                <DetailsElement 
-                    type="City" 
-                    data={plyoDetails.city}/>
-                <DetailsElement 
-                    type="Position" 
-                    data={plyoDetails.position}
-                    link={plyoDetails.link}/>
-                <DetailsElement 
-                    type="Contact Person" 
-                    data={plyoDetails.contactPerson}/>
-                <DetailsElement 
-                    type="Channel" 
-                    data={plyoDetails.channel}/>
-                {plyoDetails.email &&
-                <DetailsElement 
-                    type="E-mail" 
-                    data={plyoDetails.email}/>
-                }   
-            </Box>
-            <Divider />
         </Box>
         }
         </>
