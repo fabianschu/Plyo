@@ -30,12 +30,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ApplicationList = (props) => {
-    // console.log(props);
+    console.log(props);
     const classes = useStyles();
 
-    const {applicationsArray, showRejected, showPending, showScheduled, sortAge, sortUpdate, sortProgress} = props;
+    const {showRejected, showPending, showScheduled, sortAge, sortUpdate, sortProgress} = props;
 
-    let resultArray = [...applicationsArray];
+    let resultArray = [...props.data];
 
     if (!showRejected) {
         resultArray = resultArray.filter(application => application.status !== 'rejected')

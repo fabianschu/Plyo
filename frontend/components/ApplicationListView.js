@@ -31,7 +31,6 @@ const ApplicationListView = (props) => {
     useEffect(() => {
         props.getPlyos();
         setApplicationsArray(props.data);
-
     }, []);
 
     //filter handler
