@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getPlyos} from '../redux/actions/plyosAction';
-import {toggleRejectedFilter, changeAgeSort, changeUpdateSort, changeProgressSort} from '../redux/actions/listViewAction';
+import {toggleRejectedFilter, toggleScheduledFilter, togglePendingFilter, changeAgeSort, changeUpdateSort, changeProgressSort} from '../redux/actions/listViewAction';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
 import EditPlyo from './EditPlyo';
@@ -35,18 +35,19 @@ const ApplicationListView = (props) => {
 
     //filter handler
     const handleScheduledFilter = event => {
-        setShowScheduled(!showScheduled);
+        //setShowScheduled(!showScheduled);
+        props.toggleScheduledFilter();
     }
     const handleRejectedFilter = event => {
-        setShowRejected(!showRejected);
+        //setShowRejected(!showRejected);
 
         //############## REDUX
         // -> setting the list view
-        console.log('filter rejected');
         props.toggleRejectedFilter();
     } 
     const handlePendingFilter = event => {
-        setShowPending(!showPending);
+        //setShowPending(!showPending);
+        props.togglePendingFilter();
     }
 
 
@@ -58,25 +59,25 @@ const ApplicationListView = (props) => {
         props.changeAgeSort();
         props.changeUpdateSort(0);
         props.changeProgressSort(0);
-        setSortAge((sortAge + 1) % 3);
-        setSortUpdate(0);
-        setSortProgress(0);
+        // setSortAge((sortAge + 1) % 3);
+        // setSortUpdate(0);
+        // setSortProgress(0);
     }
     const handleUpdateSort = event => {
         props.changeAgeSort(0);
         props.changeUpdateSort();
         props.changeProgressSort(0);
-        setSortUpdate((sortUpdate + 1) % 3);
-        setSortAge(0);
-        setSortProgress(0);
+        // setSortUpdate((sortUpdate + 1) % 3);
+        // setSortAge(0);
+        // setSortProgress(0);
     }
     const handleProgressSort = event => {
         props.changeAgeSort(0);
         props.changeUpdateSort(0);
         props.changeProgressSort();
-        setSortProgress((sortProgress + 1) % 3);
-        setSortUpdate(0);
-        setSortAge(0);
+        // setSortProgress((sortProgress + 1) % 3);
+        // setSortUpdate(0);
+        // setSortAge(0);
     }
 
 
@@ -84,7 +85,7 @@ const ApplicationListView = (props) => {
         setShowAddMenu(!showAddMenu);
     }
 
-    console.log(props.ui);
+    console.log(props);
 
     return (
         <>
@@ -94,9 +95,9 @@ const ApplicationListView = (props) => {
                 handleScheduledFilter={handleScheduledFilter}
                 handlePendingFilter={handlePendingFilter}
                 handleRejectedFilter={handleRejectedFilter}
-                showScheduled={showScheduled}
-                showPending={showPending}
-                showRejected={showRejected}
+                // showScheduled={showScheduled}
+                // showPending={showPending}
+                // showRejected={showRejected}
                 />
             <AddPlyoButton 
                 // showAddMenu={showAddMenu}
@@ -110,9 +111,8 @@ const ApplicationListView = (props) => {
                 sortAge={sortAge}
                 sortUpdate={sortUpdate}
                 sortProgress={sortProgress}/>
-            {applicationsArray[0] && 
+            {props.data && 
                 <ApplicationList
-                    applicationsArray={props.data}
                     showRejected={showRejected}
                     showPending={showPending}
                     showScheduled={showScheduled}
@@ -133,4 +133,4 @@ const mapStateToProps = state => ({
     ui: state.listViewReducer
 })
 
-export default connect( mapStateToProps, {getPlyos, toggleRejectedFilter, changeAgeSort, changeUpdateSort, changeProgressSort})(ApplicationListView);
+export default connect( mapStateToProps, {getPlyos, toggleRejectedFilter, changeAgeSort, changeUpdateSort, changeProgressSort, togglePendingFilter, toggleScheduledFilter})(ApplicationListView);

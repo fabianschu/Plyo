@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getPlyos} from '../redux/actions/plyosAction';
 import { makeStyles } from '@material-ui/core/styles';
 import ApplicationListElement from './ApplicationListElement';
 import List from '@material-ui/core/List';
@@ -30,25 +29,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ApplicationList = (props) => {
-    console.log(props);
+
     const classes = useStyles();
 
-    const {showRejected, showPending, showScheduled, sortAge, sortUpdate, sortProgress} = props;
+    console.log('rerender')
+
+    const {filterRejected, filterPending, filterScheduled, sortAge, sortUpdate, sortProgress} = props.ui;
 
     let resultArray = [...props.data];
 
-    if (!showRejected) {
+    console.log('r1: ', resultArray);
+
+    if (filterRejected) {
         resultArray = resultArray.filter(application => application.status !== 'rejected')
     };
-    if (!showPending) {
-        resultArray = resultArray.filter
-        (application => application.status !== 'pending')
+    if (filterPending) {
+        resultArray = resultArray.filter(application => application.status !== 'pending')
     };
-    if (!showScheduled) {
-        resultArray = resultArray.filter
-        (application => application.status !== 'scheduled')
+    if (filterScheduled) {
+        resultArray = resultArray.filter(application => application.status !== 'scheduled')
     }
 
+    console.log('r2: ', resultArray);
     
     if (sortUpdate !== 0) {
         let convertedFilter;

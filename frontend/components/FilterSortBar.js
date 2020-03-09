@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-import { shadows } from '@material-ui/system';
-
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -53,18 +51,20 @@ const useStyles = makeStyles(theme => ({
 const FilterSortBar = (props) => {
     const classes = useStyles();
 
+    console.log(props.ui)
+
     let scheduledChipVariant = "default"
-    if(!props.showScheduled) {
+    if(props.ui.filterScheduled === true) {
         scheduledChipVariant = "outlined"
     }
 
     let pendingChipVariant = "default"
-    if(!props.showPending) {
+    if(props.ui.filterPending === true) {
         pendingChipVariant = "outlined"
     }
 
     let rejectedChipVariant = "default"
-    if(!props.showRejected) {
+    if(props.ui.filterRejected === true) {
         rejectedChipVariant = "outlined"
     }
 
@@ -105,4 +105,8 @@ const FilterSortBar = (props) => {
     )
 }
 
-export default FilterSortBar;
+const mapStateToProps = state => ({
+    ui: state.listViewReducer
+})
+
+export default connect(mapStateToProps)(FilterSortBar);

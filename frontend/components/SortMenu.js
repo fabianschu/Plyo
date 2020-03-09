@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Slide from '@material-ui/core/Slide';
@@ -43,17 +44,17 @@ const SortMenu = (props) => {
     const classes = useStyles();
 
     let sortAgeButtonVariant = "outlined"
-    if(props.sortAge !== 0) {
+    if(props.ui.sortAge !== 0) {
         sortAgeButtonVariant = "contained"
     }
 
     let sortUpdateButtonVariant = "outlined"
-    if(props.sortUpdate !== 0) {
+    if(props.ui.sortUpdate !== 0) {
         sortUpdateButtonVariant = "contained"
     }
 
     let sortProgressButtonVariant = "outlined"
-    if(props.sortProgress !== 0) {
+    if(props.ui.sortProgress !== 0) {
         sortProgressButtonVariant = "contained"
     }
 
@@ -152,4 +153,8 @@ const SortMenu = (props) => {
     )
 }
 
-export default SortMenu
+const mapStateToProps = state => ({
+    ui: state.listViewReducer
+})
+
+export default connect(mapStateToProps)(SortMenu);

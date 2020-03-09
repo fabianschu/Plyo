@@ -17,12 +17,12 @@ export const listViewReducer = (state = initialState, action) => {
         case "TOGGLE_SCHEDULED_FILTER":
         return {
             ...state,
-            filterRejected: !state.filterScheduled
+            filterScheduled: !state.filterScheduled
         };
         case "TOGGLE_PENDING_FILTER":
         return {
             ...state,
-            filterRejected: !state.filterPending
+            filterPending: !state.filterPending
         };
         
         case "CHANGE_AGE_SORT":
@@ -40,14 +40,12 @@ export const listViewReducer = (state = initialState, action) => {
             };
 
         case "CHANGE_UPDATE_SORT":
-            console.log('payload: ', action.payload)
             if (action.payload === 0) {
                 return {
                     ...state,
                     sortUpdate: 0
                 }
             }
-            console.log('payload2: ', action.payload)
 
             return {
                 ...state,
