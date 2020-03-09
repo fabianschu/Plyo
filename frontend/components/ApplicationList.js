@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ApplicationList = (props) => {
-    console.log(props);
+    // console.log(props);
     const classes = useStyles();
 
     const {applicationsArray, showRejected, showPending, showScheduled, sortAge, sortUpdate, sortProgress} = props;
