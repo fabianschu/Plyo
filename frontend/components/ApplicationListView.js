@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getPlyos} from '../redux/actions/plyosAction';
+import {toggleListView} from '../redux/actions/listViewAction';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
 import EditPlyo from './EditPlyo';
 import ApplicationList from './ApplicationList';
 import AddPlyoButton from './AddPlyoButton';
-import {applications} from '../public/mock-data';
 
 const ApplicationListView = (props) => {
 
@@ -31,8 +31,8 @@ const ApplicationListView = (props) => {
 
 
     useEffect(() => {
-        // setApplicationsArray(applications);
-        console.log(props.getPlyos());
+        props.getPlyos();
+        setApplicationsArray(props.data);
 
     }, []);
 
@@ -42,6 +42,8 @@ const ApplicationListView = (props) => {
     }
     const handleRejectedFilter = event => {
         setShowRejected(!showRejected);
+        console.log('filter rejected');
+        props.toggleListView();
     } 
     const handlePendingFilter = event => {
         setShowPending(!showPending);
@@ -73,6 +75,7 @@ const ApplicationListView = (props) => {
         setShowAddMenu(!showAddMenu);
     }
 
+    console.log(props);
 
     return (
         <>
@@ -100,7 +103,7 @@ const ApplicationListView = (props) => {
                 sortProgress={sortProgress}/>
             {applicationsArray[0] && 
                 <ApplicationList
-                    applicationsArray={applicationsArray}
+                    applicationsArray={props.data}
                     showRejected={showRejected}
                     showPending={showPending}
                     showScheduled={showScheduled}
@@ -117,7 +120,8 @@ const ApplicationListView = (props) => {
 }
 
 const mapStateToProps = state => ({
-    data: state.plyosReducer.plyosData
+    data: state.plyosReducer.plyosData,
+    ui: state.listViewReducer
 })
 
-export default connect( mapStateToProps, {getPlyos})(ApplicationListView);
+export default connect( mapStateToProps, {getPlyos, toggleListView})(ApplicationListView);

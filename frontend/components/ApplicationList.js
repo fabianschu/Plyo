@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {getPlyos} from '../redux/actions/plyosAction';
 import { makeStyles } from '@material-ui/core/styles';
 import ApplicationListElement from './ApplicationListElement';
 import List from '@material-ui/core/List';
@@ -28,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ApplicationList = (props) => {
-
+    console.log(props);
     const classes = useStyles();
 
     const {applicationsArray, showRejected, showPending, showScheduled, sortAge, sortUpdate, sortProgress} = props;
@@ -105,4 +107,9 @@ const ApplicationList = (props) => {
     )
 }
 
-export default ApplicationList;
+const mapStateToProps = state => ({
+    data: state.plyosReducer.plyosData,
+    ui: state.listViewReducer
+})
+
+export default connect(mapStateToProps)(ApplicationList);
