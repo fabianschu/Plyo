@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+import {getPlyos} from '../redux/actions/plyosAction';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
 import EditPlyo from './EditPlyo';
@@ -7,6 +9,8 @@ import AddPlyoButton from './AddPlyoButton';
 import {applications} from '../public/mock-data';
 
 const ApplicationListView = (props) => {
+
+    console.log('props: ',props)
 
     const [applicationsArray, setApplicationsArray] = useState([]);
 
@@ -27,7 +31,9 @@ const ApplicationListView = (props) => {
 
 
     useEffect(() => {
-        setApplicationsArray(applications);
+        // setApplicationsArray(applications);
+        console.log(props.getPlyos());
+
     }, []);
 
     //filter handler
@@ -110,11 +116,8 @@ const ApplicationListView = (props) => {
     )
 }
 
-ApplicationListView.getInitialProps = async ctx => {
-    const res = await fetch('https://api.github.com/repos/zeit/next.js')
-    const json = await res.json()
-    return { stars: json.stargazers_count }
-}
+const mapStateToProps = state => ({
+    data: state.plyosReducer.plyosData
+})
 
-
-export default ApplicationListView
+export default connect( mapStateToProps, {getPlyos})(ApplicationListView);

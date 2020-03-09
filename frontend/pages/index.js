@@ -1,11 +1,7 @@
 import Head from 'next/head';
 import ApplicationListView from '../components/ApplicationListView';
-import {applications} from '../public/mock-data';
 
-
-const Home = (applications) => {
-  
-  console.log(applications);
+const Home = () => {
   
   return (
     <div className="container" >
@@ -18,13 +14,6 @@ const Home = (applications) => {
       <ApplicationListView/>
     </div>
   )
-}
-
-Home.getInitialProps = async ctx => {
-  console.log('stuff happening')
-  // const res = await fetch('https://api.github.com/repos/zeit/next.js')
-  // const json = await res.json()
-  return applications;
 }
 
 export default Home
