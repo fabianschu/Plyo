@@ -4,9 +4,10 @@ import {getPlyos} from '../redux/actions/plyosAction';
 import {toggleRejectedFilter, toggleScheduledFilter, togglePendingFilter, changeAgeSort, changeUpdateSort, changeProgressSort} from '../redux/actions/listViewAction';
 import FilterSortBar from './FilterSortBar';
 import SortMenu from './SortMenu';
-import EditPlyo from './EditPlyo';
+import CreateCompanyMenu from './CreateCompanyMenu';
 import ApplicationList from './ApplicationList';
 import AddPlyoButton from './AddPlyoButton';
+import SlideUp from './SlideUp';
 
 const ApplicationListView = (props) => {
 
@@ -120,10 +121,13 @@ const ApplicationListView = (props) => {
                     sortUpdate={sortUpdate}
                     sortProgress={sortProgress}
             />}
-            <EditPlyo 
+            {/* <CreateCompanyMenu 
                 showAddMenu={showAddMenu}
                 setShowAddMenu={setShowAddMenu}
-                handleAddMenu={handleAddMenu}/>
+                handleAddMenu={handleAddMenu}/> */}
+            <SlideUp in={showAddMenu} out={setShowAddMenu}>
+                <CreateCompanyMenu setShowAddMenu={setShowAddMenu}/>
+            </SlideUp>
         </>
     )
 }

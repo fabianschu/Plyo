@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+
 //var sslRedirect = require("heroku-ssl-redirect");
 
 
@@ -51,5 +52,10 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 app.get('/', (req, res, next) => {
     res.send('Welcome');
 })
+
+const plyos = require("./routes/plyos");
+app.use("/plyos", plyos);
+
+app.locals.title = "Project Plyos";
 
 module.exports = app;
