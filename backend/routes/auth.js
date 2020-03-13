@@ -89,5 +89,21 @@ router.delete("/logout", (req, res) => {
     });
 });
 
+// router.get("/google", passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+
+// router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+//     res.redirect('/');
+// });
+
+router.get('/linkedin',
+passport.authenticate('linkedin', { state: 'SOME STATE'  }),
+function(req, res){});
+
+router.get('/linkedin/callback', passport.authenticate('linkedin', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+}));
+
+
 
 module.exports = router;
