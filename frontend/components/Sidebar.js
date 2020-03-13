@@ -8,6 +8,7 @@ import List from '@material-ui/core/List';
 import Link from 'next/link';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -52,6 +53,10 @@ const SideMenu = (props) => {
 
     const classes = useStyles();
 
+    const handleClick = () => {
+        axios.delete(`${process.env.endpoint}/auth/logout`);
+    }
+
     return(
     <List>
         <Link href="/signup">
@@ -69,7 +74,7 @@ const SideMenu = (props) => {
                 Projects
         </ListItem>
         <Divider/>
-        <ListItem className={classes.root} button>
+        <ListItem className={classes.root} button onClick={handleClick}>
                 Logout
         </ListItem>
     </List>

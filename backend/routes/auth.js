@@ -81,5 +81,13 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
+router.delete("/logout", (req, res) => {
+    // passport logout function
+    req.logout();
+    res.json({
+        message: "Logout was succesful"
+    });
+});
+
 
 module.exports = router;
