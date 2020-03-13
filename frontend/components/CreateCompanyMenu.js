@@ -92,11 +92,13 @@ const EditPlyo = (props) => {
             email: email,
             url: url
         }
-        console.log(process.env.endpoint);
-        axios.post(`${process.env.REACT_APP_DEV_SERVER}/plyos`)
-            .then(res => console.log(res))
+        
+        axios.post(`${process.env.endpoint}/plyos`)
+            .then(res => {
+                console.log(res)
+                props.setShowAddMenu(false);
+            })
             .catch(err => console.log(err));
-        props.setShowAddMenu(false);
     }
 
     return (        

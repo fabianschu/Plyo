@@ -9,12 +9,14 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+var cors = require('cors')
 
 //var sslRedirect = require("heroku-ssl-redirect");
 
 
 const app = express();
 
+app.use(cors())
 
 mongoose
     .connect(process.env.MONGODB_URI || "mongodb://localhost/plyo", {
