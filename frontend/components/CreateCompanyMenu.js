@@ -92,8 +92,8 @@ const EditPlyo = (props) => {
             email: email,
             url: url
         }
-
-        axios.post('/plyos')
+        console.log(process.env.endpoint);
+        axios.post(`${process.env.REACT_APP_DEV_SERVER}/plyos`)
             .then(res => console.log(res))
             .catch(err => console.log(err));
         props.setShowAddMenu(false);

@@ -7,7 +7,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    console.log(req)
+    console.log('bingo');
 });
 
 module.exports = router;
