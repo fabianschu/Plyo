@@ -8,10 +8,8 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    console.log(req.body);
-    const {company, city, position, applicationDate, channel, email, url} = req.body;
     Plyo.create({
-        company, city, position, applicationDate, channel, email, url
+        ...req.body
     })
 });
 

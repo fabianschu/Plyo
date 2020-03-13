@@ -7,9 +7,12 @@ const logger = require("morgan");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-var cors = require('cors')
+var cors = require('cors');
+
+
 
 //var sslRedirect = require("heroku-ssl-redirect");
 
@@ -45,11 +48,24 @@ app.use(cookieParser());
 //ssl for heroku
 //app.use(sslRedirect());
 
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: new MongoStore({
+        mongooseConnection: mongoose.connection
+        })
+    })
+);
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', (req, res, next) => {
     res.send('Welcome');
@@ -57,6 +73,9 @@ app.get('/', (req, res, next) => {
 
 const plyos = require("./routes/plyos");
 app.use("/plyos", plyos);
+
+const auth = require("./routes/auth");
+app.use("/auth", auth);
 
 app.locals.title = "Project Plyos";
 
