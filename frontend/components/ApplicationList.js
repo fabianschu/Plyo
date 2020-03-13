@@ -32,13 +32,10 @@ const ApplicationList = (props) => {
 
     const classes = useStyles();
 
-    console.log('rerender')
-
-    const {filterRejected, filterPending, filterScheduled, sortAge, sortUpdate, sortProgress} = props.ui;
+    const {filterRejected, filterPending, filterScheduled, sortAge, sortUpdate, sortProgress} = props.listView;
 
     let resultArray = [...props.data];
 
-    console.log('r1: ', resultArray);
 
     if (filterRejected) {
         resultArray = resultArray.filter(application => application.status !== 'rejected')
@@ -49,8 +46,6 @@ const ApplicationList = (props) => {
     if (filterScheduled) {
         resultArray = resultArray.filter(application => application.status !== 'scheduled')
     }
-
-    console.log('r2: ', resultArray);
     
     if (sortUpdate !== 0) {
         let convertedFilter;
@@ -111,7 +106,7 @@ const ApplicationList = (props) => {
 
 const mapStateToProps = state => ({
     data: state.plyosReducer.plyosData,
-    ui: state.listViewReducer
+    listView: state.listViewReducer
 })
 
 export default connect(mapStateToProps)(ApplicationList);

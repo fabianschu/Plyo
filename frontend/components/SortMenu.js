@@ -37,24 +37,24 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between'
     }
-  }));
+}));
 
 const SortMenu = (props) => {
 
     const classes = useStyles();
 
     let sortAgeButtonVariant = "outlined"
-    if(props.ui.sortAge !== 0) {
+    if(props.listView.sortAge !== 0) {
         sortAgeButtonVariant = "contained"
     }
 
     let sortUpdateButtonVariant = "outlined"
-    if(props.ui.sortUpdate !== 0) {
+    if(props.listView.sortUpdate !== 0) {
         sortUpdateButtonVariant = "contained"
     }
 
     let sortProgressButtonVariant = "outlined"
-    if(props.ui.sortProgress !== 0) {
+    if(props.listView.sortProgress !== 0) {
         sortProgressButtonVariant = "contained"
     }
 
@@ -154,7 +154,7 @@ const SortMenu = (props) => {
 }
 
 const mapStateToProps = state => ({
-    ui: state.listViewReducer
+    listView: state.listViewReducer
 })
 
 export default connect(mapStateToProps)(SortMenu);

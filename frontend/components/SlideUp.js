@@ -21,8 +21,6 @@ const useStyles = makeStyles(theme => ({
 const SlideUp = (props) => {
     const classes = useStyles();
 
-    console.log(props)
-
     return (
         <Slide 
         direction="up" 

@@ -51,8 +51,6 @@ const useStyles = makeStyles(theme => ({
 const FilterSortBar = (props) => {
     const classes = useStyles();
 
-    console.log(props.ui)
-
     let scheduledChipVariant = "default"
     if(props.ui.filterScheduled === true) {
         scheduledChipVariant = "outlined"

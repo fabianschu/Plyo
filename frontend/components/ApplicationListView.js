@@ -86,8 +86,6 @@ const ApplicationListView = (props) => {
         setShowAddMenu(!showAddMenu);
     }
 
-    console.log(props);
-
     return (
         <>
             <FilterSortBar 

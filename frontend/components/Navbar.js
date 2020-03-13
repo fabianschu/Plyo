@@ -6,6 +6,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import Link from 'next/link';
+import {connect} from 'react-redux';
+import {toggleSidebar} from '../redux/actions/generalUiAction';
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,20 +21,32 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const Navbar = () => {
+const Navbar = (props) => {
     const classes = useStyles();
+    
+    const handleClick = () => {
+      props.toggleSidebar();
+    }
+
     return (
     <AppBar position="fixed" className={classes.bar} elevation={4}>
         <Toolbar variant="dense">
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
                 <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit">
-            Photos
-            </Typography>
+            <Link href="/signup">
+              <Typography variant="h6" color="inherit">
+              Signup
+              </Typography>
+            </Link>
         </Toolbar>
     </AppBar>   
     )
 }
 
-export default Navbar
+const mapStateToProps = state => ({
+  generalUi: state.generalUiReducer
+})
+
+export default connect( mapStateToProps, {toggleSidebar})(Navbar);
+
