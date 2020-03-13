@@ -8,6 +8,18 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     contentBox: {
         marginTop: 48
+    },
+    // pageContainer: {
+    //     [theme.breakpoints.up('sm')]: {
+    //       width: `calc(100% - ${theme.uiElements.drawerWidth})`,
+    //       marginLeft: theme.uiElements.drawerWidth,
+    //     },
+    //   },
+    pageContainer: {
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - 240px)`,
+            marginLeft: '240px',
+        },
     }
 }));
 
@@ -18,11 +30,13 @@ const Page = (props) => {
     return (
         <>
             <ThemeProvider theme={theme}>
-                <Navbar/>
-                <Sidebar />
-                <div className={classes.contentBox} theme={theme}>
-                    {props.children}
-                </div>
+                    <Navbar/>
+                    <Sidebar />
+                    <div className={classes.pageContainer} theme={theme}>
+                        <div className={classes.contentBox} theme={theme}>
+                            {props.children}
+                        </div>
+                    </div>
             </ThemeProvider>
         </>
     )

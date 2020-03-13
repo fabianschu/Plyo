@@ -1,7 +1,5 @@
 import App from 'next/app';
-import Page from '../components/Page';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 
@@ -11,10 +9,10 @@ class MyApp extends App {
         const {Component, pageProps} = this.props;
         return(
             <Provider store={store}>
-                <Page {...pageProps}>
+                {/* <Page {...pageProps}> */}
                     <CssBaseline/>  
                     <Component {...pageProps}/>
-                </Page>
+                {/* </Page> */}
             </Provider>
         )
     }

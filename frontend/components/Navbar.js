@@ -12,10 +12,6 @@ import {toggleSidebar} from '../redux/actions/generalUiAction';
 
 
 const useStyles = makeStyles(theme => ({
-
-    root: {
-      flexGrow: 1
-    },
     menuButton: {
       marginRight: theme.spacing(2),
     },
@@ -29,7 +25,7 @@ const Navbar = (props) => {
     }
 
     return (
-    <AppBar position="fixed" className={classes.bar} elevation={4}>
+    <AppBar position="fixed" className={classes.appBar} elevation={4}>
         <Toolbar variant="dense">
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleClick}>
                 <MenuIcon />

@@ -107,10 +107,6 @@ const PlyoDetailsEvent = (props) => {
         return <EventInformation text1={text1} text2={text2}/>
     }
 
-    console.log(currentStage.event)
-    console.log(currentIndex);
-
-
     return (
         <>
         <Box className={classes.connector}>

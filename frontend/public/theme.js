@@ -24,6 +24,9 @@ const theme = createMuiTheme({
       green4: '#0DA471',
       red: '#eb153c',
       yellow: '#eba213',
+    },
+    uiElements: {
+      drawerWidth: '240px'
     }
   });
 

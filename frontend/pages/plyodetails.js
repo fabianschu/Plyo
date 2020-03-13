@@ -1,12 +1,15 @@
 import { useRouter } from 'next/router';
 import PlyoDetailsView from '../components/PlyoDetailsView';
+import Page from '../components/Page';
 
 const plyodetails = () => {
     
     const router = useRouter();
 
     return (
-        <PlyoDetailsView id={router.query.id}/>
+        <Page>
+            <PlyoDetailsView id={router.query.id}/>
+        </Page>
     )
 }
 

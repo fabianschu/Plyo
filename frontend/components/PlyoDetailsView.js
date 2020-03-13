@@ -63,8 +63,6 @@ const DetailsElement = (props) => {
     
     const DataDisplay = (props) => {
 
-        console.log(props);
-
         if(props.type === 'Position' && props.link) {
             return (
                 <>

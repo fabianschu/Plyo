@@ -4,6 +4,10 @@ import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
 import {toggleSidebar} from '../redux/actions/generalUiAction';
+import List from '@material-ui/core/List';
+import Link from 'next/link';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 
 const drawerWidth = 240;
 
@@ -30,6 +34,11 @@ const useStyles = makeStyles(theme => ({
         },
     },
     toolbar: theme.mixins.toolbar,
+    drawerPaperPerm: {
+        width: drawerWidth,
+        position: 'fixed',
+        top: '48px'
+    },
     drawerPaper: {
         width: drawerWidth,
     },
@@ -41,29 +50,44 @@ const useStyles = makeStyles(theme => ({
 
 const SideMenu = (props) => {
 
+    const classes = useStyles();
+
+    return(
+    <List>
+        <Link href="/signup">
+            <ListItem component="a" className={classes.root} button>
+                Sign Up
+            </ListItem>
+        </Link>
+        <Link href="/login">
+            <ListItem component="a" className={classes.root} button>
+                Login
+            </ListItem>
+        </Link>
+        <Divider/>
+        <ListItem className={classes.root} button>
+                Projects
+        </ListItem>
+        <Divider/>
+        <ListItem className={classes.root} button>
+                Logout
+        </ListItem>
+    </List>
+    )
 }
 
 const Sidebar = (props) => {
 
-    const { container } = props;
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const {showSidebar} = props.generalUi;
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
-
-    console.log(props);
 
     return (
         <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             <Hidden smUp implementation="css">
                 <Drawer
-                    container={container}
                     variant="temporary"
                     anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                     open={showSidebar}
@@ -75,18 +99,18 @@ const Sidebar = (props) => {
                     keepMounted: true, // Better open performance on mobile.
                     }}
                 >
-                    <p>hi</p>
+                    <SideMenu/>
                 </Drawer>
             </Hidden>
             <Hidden xsDown implementation="css">
                 <Drawer
                     classes={{
-                    paper: classes.drawerPaper,
+                    paper: classes.drawerPaperPerm,
                     }}
                     variant="permanent"
                     open
                 >
-                    <p>hi</p>
+                    <SideMenu/>
                 </Drawer>
             </Hidden>
         </nav>
