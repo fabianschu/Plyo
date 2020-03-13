@@ -93,7 +93,7 @@ const EditPlyo = (props) => {
             url: url
         }
         
-        axios.post(`${process.env.endpoint}/plyos`)
+        axios.post(`${process.env.endpoint}/plyos`, data)
             .then(res => {
                 console.log(res)
                 props.setShowAddMenu(false);
