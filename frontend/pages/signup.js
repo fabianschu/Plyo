@@ -64,11 +64,20 @@ const Signup = () => {
             setPassword(event.target.value);
         }
     }
-
+    
     const handleClick = event => {
         const credentials = { username, password };
 
         axios.post(`${process.env.endpoint}/auth/signup`, credentials)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => console.log(err));
+    }
+
+    const handleLinkedin = event => {
+
+        axios.get(`${process.env.endpoint}/auth/linkedin`)
         .then(res => {
             console.log(res)
         })
@@ -106,7 +115,8 @@ const Signup = () => {
                 <Box className={classes.subContainer}>
                     <Typography className={classes.login}>Already have an account? Login <Link href="/auth/login">here</Link> or login with:</Typography>
                     <Button variant='outlined'  className={classes.cta}>Google</Button>
-                    <Button variant='outlined' className={classes.cta}>Linkedin</Button>
+                    <Button component='a' variant='outlined' className={classes.cta} onClick={handleLinkedin}>Linkedin</Button>
+                    <Link href={`${process.env.endpoint}/auth/linkedin`}><a>Linkedin</a></Link>
                 </Box>
             </Box>
         </Box>
