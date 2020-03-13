@@ -12,6 +12,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 var cors = require('cors');
 
+require("./configs/passport");
 
 
 //var sslRedirect = require("heroku-ssl-redirect");

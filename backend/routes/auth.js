@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
 
 router.post('/signup', function(req, res) {
 
@@ -41,13 +42,14 @@ router.post('/signup', function(req, res) {
                     password: hash
                 });
             })
-            // .then(newUser => {
-            //     // passport login
-            //     req.login(newUser, err => {
-            //         if (err) res.status(500).json(err);
-            //         else res.json(newUser);
-            //     });
-            // })
+            .then(newUser => {
+                // passport login
+                console.log('logging in')
+                req.login(newUser, err => {
+                    if (err) res.status(500).json(err);
+                    else res.json(newUser);
+                });
+            })
             .catch(err => {
                 res.status(500).json(err);
             });
@@ -55,6 +57,28 @@ router.post('/signup', function(req, res) {
     .catch(err => {
         res.status(500).json(err);
     });
+});
+
+router.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user) => {
+        if (err) {
+            return res.status(500).json({
+                message: "Error while authenticating"
+            });
+        }
+        if (!user) {
+            // no user found with username or password didn't match
+            return res.status(400).json({
+                message: "Invalid credentials"
+            });
+        }
+      // passport req.login
+      // creates the passport session
+        req.login(user, err => {
+            if (err) res.status(500).json(err);
+            res.json(user);
+        });
+    })(req, res, next);
 });
 
 
