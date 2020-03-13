@@ -1,6 +1,9 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
+import {toggleSidebar} from '../redux/actions/generalUiAction';
 
 const drawerWidth = 240;
 
@@ -47,6 +50,8 @@ const Sidebar = (props) => {
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
+    const {showSidebar} = props.generalUi;
+
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -61,8 +66,8 @@ const Sidebar = (props) => {
                     container={container}
                     variant="temporary"
                     anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
+                    open={showSidebar}
+                    onClose={props.toggleSidebar}
                     classes={{
                     paper: classes.drawerPaper,
                     }}
@@ -88,4 +93,8 @@ const Sidebar = (props) => {
     )
 }
 
-export default Sidebar
+const mapStateToProps = state => ({
+    generalUi: state.generalUiReducer
+})
+
+export default connect( mapStateToProps, {toggleSidebar})(Sidebar);

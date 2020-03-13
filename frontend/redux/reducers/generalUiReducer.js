@@ -1,5 +1,5 @@
 const initialState = {
-    sidebar: false
+    showSidebar: false
 };
 
 export const generalUiReducer = (state = initialState, action) => {
@@ -7,7 +7,7 @@ export const generalUiReducer = (state = initialState, action) => {
         case "TOGGLE_SIDEBAR":
         return {
             ...state,
-            sidebar: !state.sidebar
+            showSidebar: !state.showSidebar
         };
 
         default:
